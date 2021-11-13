@@ -1,7 +1,18 @@
 # KD-Trees
 Create a symbol table data type whose keys are two-dimensional points. Use a 2d-tree to support efficient range search (find all of the points contained in a query rectangle) and nearest neighbor search (find a closest point to a query point). 2d-trees have numerous applications, ranging from classifying astronomical objects to computer animation to speeding up neural networks to mining data to image retrieval.
 
-![geoPrimitive](https://user-images.githubusercontent.com/83437383/141387786-d8cedc85-5e33-4265-9427-a612a2652dcf.png)
+```java
+                                axis-aligned rectangle r            
+  distance to r = 0.0 ─────────┐ ┌────────────────────┐   (0.8, 0.6)
+                               │ │                    │             
+  distance to r = 0.3 ─ ─ ─    │ │              ┌─────┴───────┐     
+       (0.1, 0.4)          │   └─┼──────▶ ◯     │intersects r │     
+                            ─ ─ ─│              ├─────────────┤     
+                                 │              └─────┬───────┘     
+  distance to r = 0.5 ─ ─ ─ ─ ─ ─│                    │             
+        (0.0.0.0)                └────────────────────┘             
+                                 (0.4, 0.3)                         
+```
 
 > Geometric primitives for points and axis-aligned rectangles in a plane.
 
