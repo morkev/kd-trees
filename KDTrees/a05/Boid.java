@@ -65,7 +65,6 @@ public class Boid {
      * This method provides a thrust vector to achieve that goal.
      * @param neighbors ––> Iterable<Boid> 
      */
-
     public Vector avoidCollision(Iterable<Boid> neighbors) {
         Vector requestedVector = new Vector(2);
         Vector myPosition = new Vector(x(), y());
@@ -75,9 +74,9 @@ public class Boid {
         for (Boid b : neighbors) {
             Vector neighborPosition = new Vector(b.x(), b.y());
             double distanceTo = myPosition.distanceTo(neighborPosition);
-            // Don't count self
+            
             if (distanceTo == 0.0)
-                break;
+                break; // Don't count self
 
             Vector avoidanceVector = myPosition.minus(neighborPosition);
             Vector scaledAvoidanceVector = avoidanceVector.scale(1.0 / distanceTo);            
@@ -137,8 +136,7 @@ public class Boid {
     }
 
     /**
-     * Return a thrust vector towards the origin: 
-     * 
+     * Return a thrust vector towards the origin:
      * i.e.: 0.5, 0.5;
      * 
      * This is essentially a hack so that the Boids will eventually return 
