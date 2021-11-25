@@ -20,7 +20,7 @@ import edu.princeton.cs.algs4.StdRandom;
  *                           ─ ─ ─│              ├─────────────┤     
  *                                │              └─────┬───────┘     
  * distance to r = 0.5 ─ ─ ─ ─ ─ ─│                    │             
- *       (0.0.0.0)                └────────────────────┘             
+ *       (0.0, 0.0)                └────────────────────┘             
  *                                (0.4, 0.3)                         
  * 
  * The mutable data type is a symbol table with Point2D – a RedBlackBST was also implemented
@@ -83,18 +83,12 @@ public class KdTreeST<Value> {
 	}
 
 	/**
-	 * Private helper method for put.
+	 * Private helper method for put().
 	 * 
 	 * The algorithms for search and insert are similar to those for BSTs, but at the root we use the x-coordinate 
 	 * (if the point to be inserted has a smaller x-coordinate than the point at the root, go left; otherwise go right); 
 	 * then at the next level, we use the y-coordinate (if the point to be inserted has a smaller y-coordinate than 
 	 * the point in the node, go left; otherwise go right); then at the next level the x-coordinate, and so forth.
-	 * 
-	 * @param parent –––> Node
-	 * @param node –––––> Node
-	 * @param p ––––––––> Point2D
-	 * @param val ––––––> Value<>
-	 * @param vertical –> boolean
 	 */
 	private Node put(Node parent, Node node, Point2D p, Value val, boolean vertical) {
 		if (node == null) {
@@ -112,9 +106,6 @@ public class KdTreeST<Value> {
 	
 	/**
 	 * Associates the value with the point.
-	 * 
-	 * @param point ––> Point2D
-	 * @param val ––––> Value
 	 */
 	public void put(Point2D point, Value val) {
 		if (point == null || val == null) {
@@ -125,7 +116,6 @@ public class KdTreeST<Value> {
 
 	/**
 	 * Returns the value associated with a point.
-	 * @param p ––> Point2D
 	 */
 	public Value get(Point2D p) {
 		if (p == null) {
@@ -135,11 +125,7 @@ public class KdTreeST<Value> {
 	}
 
 	/**
-	 * Private helper method for get
-	 * @param node –––––––> Node
-	 * @param p ––––––––––> Point2D
-	 * @param isVertical –> boolean
-	 * @return
+	 * Private helper method for get().
 	 */
 	private Value get(Node node, Point2D p, boolean isVertical) {
 		if (node == null) {
@@ -179,7 +165,6 @@ public class KdTreeST<Value> {
 	
 	/**
 	 * Returns all the points that are inside the rectangle.
-	 * @param rect ––> RectHV
 	 */
 	public Iterable<Point2D> range(RectHV rect){
 		if (rect == null) {
@@ -202,7 +187,6 @@ public class KdTreeST<Value> {
 	/**
 	 * Returns the nearest neighbor to point p; 
 	 * null if the Symbol Table is empty.
-	 * @param p ––> Point2D
 	 */
 	public Point2D nearest(Point2D p){
 		if(p == null) {
@@ -212,10 +196,7 @@ public class KdTreeST<Value> {
 	}
 	
 	/**
-	 * Private helper method for nearest
-	 * @param p ––––––––> Point2D
-	 * @param node –––––> Node
-	 * @param paragon ––> Winning Point2D value
+	 * Private helper method for nearest.
 	 */
 	private Point2D nearest(Point2D p, Node node, Point2D paragon) {
 		if (node == null) {
@@ -236,9 +217,6 @@ public class KdTreeST<Value> {
 	
 	/**
 	 * Takes a point (X or Y), and returns its node in 2D.
-	 * @param node ––––––––> Node
-	 * @param p –––––––––––> Point2D
-	 * @param isVertical ––> boolean
 	 */
 	private double compareXY(Node node, Point2D p, boolean isVertical){
 		if(isVertical) {
@@ -248,19 +226,20 @@ public class KdTreeST<Value> {
 	}
 	
 	/**
+	 * NOTE: If you are running JUnits, delete this comment.
 	 * Initializes a new rectangle of points in a plane.
 	 * [<em>xmin</em>, <em>xmax</em>] x [<em>ymin</em>, <em>ymax</em>].
 	 * 
 	 * Parameters for instantiation:
-     * @param parent ––––––> Node
+     	 * @param parent ––––––> Node
 	 * @param p –––––––––––> Point2D
 	 * @param isVertical ––> boolean
-     *
-     * Creation parameters:
-     * @param  xmin the <em>x</em>-coordinate of the lower-left endPoint
-     * @param  xmax the <em>x</em>-coordinate of the upper-right endPoint
-     * @param  ymin the <em>y</em>-coordinate of the lower-left endPoint
-     * @param  ymax the <em>y</em>-coordinate of the upper-right endPoint
+    	 *
+       	 * Creation parameters:
+    	 * @param  xmin the <em>x</em>-coordinate of the lower-left endPoint
+    	 * @param  xmax the <em>x</em>-coordinate of the upper-right endPoint
+    	 * @param  ymin the <em>y</em>-coordinate of the lower-left endPoint
+     	 * @param  ymax the <em>y</em>-coordinate of the upper-right endPoint
 	 */
 	private RectHV rectCreator(Node parent, Point2D p, boolean isVertical) {
 		if (parent == null) {
