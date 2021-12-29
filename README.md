@@ -10,7 +10,7 @@ Create a symbol table data type whose keys are two-dimensional points. Use a 2d-
                             ─ ─ ─│              ├─────────────┤     
                                  │              └─────┬───────┘     
   distance to r = 0.5 ─ ─ ─ ─ ─ ─│                    │             
-        (0.0.0.0)                └────────────────────┘             
+        (0.0, 0.0)                └────────────────────┘             
                                  (0.4, 0.3)                         
 ```
 
