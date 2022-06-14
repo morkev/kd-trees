@@ -69,10 +69,10 @@ public class PointST<Value> {
 
 <b>Performance requirements</b>: the implementation should support <i>put()</i>, <i>get()</i> and <i>contains()</i> in time proportional to the logarithm of the number of points in the set in the worst case; it should support <i>points()</i>, <i>nearest()</i>, and <i>range()</i> in time proportional to the number of points in the symbol table.
 
-## 2d-tree implementation
+## 2D-Tree Implementation
 Write a mutable data type KdTreeST that uses a 2d-tree to implement the same API (but renaming PointST to KdTreeST). A 2d-tree is a generalization of a BST to two-dimensional keys. The idea is to build a BST with points in the nodes, using the x- and y-coordinates of the points as keys in strictly alternating sequence, starting with the x-coordinates.
 
-## Search and insert.
+## Search and Insert
 The algorithms for search and insert are similar to those for BSTs, but at the root we use the x-coordinate (if the point to be inserted has a smaller x-coordinate than the point at the root, go left; otherwise go right); then at the next level, we use the y-coordinate (if the point to be inserted has a smaller y-coordinate than the point in the node, go left; otherwise go right); then at the next level the x-coordinate, and so forth.
 
 <img width="1258" alt="insert" src="https://user-images.githubusercontent.com/83437383/141388323-33ccdfbc-f780-4e39-92bd-3710bfb966b4.png">
@@ -85,13 +85,13 @@ The prime advantage of a 2d-tree over a BST is that it supports efficient implem
 ## Range Search
 To find all points contained in a given query rectangle, start at the root and recursively search for points in both subtrees using the following pruning rule: if the query rectangle does not intersect the rectangle corresponding to a node, there is no need to explore that node (or its subtrees). That is, you should search a subtree only if it might contain a point contained in the query rectangle.
 
-### RangeSearchVisualizer 
+### Range Search Visualizer - Method
 - Reads a sequence of points from a file (specified as a command-line argument) and inserts those points into a 2d-tree. Then, it performs range searches on the axis-aligned rectangles dragged by the user in the standard drawing window.
 
 ## Nearest Neighbor Search
 To find a closest point to a given query point, start at the root and recursively search in both subtrees using the following pruning rule: if the closest point discovered so far is closer than the distance between the query point and the rectangle corresponding to a node, there is no need to explore that node (or its subtrees). That is, you should search a node only if it might contain a point that is closer than the best one found so far. The effectiveness of the pruning rule depends on quickly finding a nearby point. To do this, organize your recursive method so that when there are two possible subtrees to go down, you choose first the subtree that is on the same side of the splitting line as the query point; the closest point found while exploring the first subtree may enable pruning of the second subtree.
 
-### NearestNeighborVisualizer 
+### Nearest Neighbor Visualizer - Method
 - Reads a sequence of points from a file (specified as a command-line argument) and inserts those points into a 2d-tree. Then, it performs nearest neighbor queries on the point corresponding to the location of the mouse in the standard drawing window.
 
 ## Analysis of Running Time & Memory Usage
